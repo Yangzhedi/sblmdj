@@ -1,6 +1,10 @@
-# my-project
+# sblmdj
 
 > A webpack project
+
+[![ENV](https://img.shields.io/badge/react-^15.6.1-blue.svg)](https://github.com/Yangzhedi/sblmdj)
+[![ENV](https://img.shields.io/badge/antd-2.0.0-blue.svg)](https://github.com/Yangzhedi/sblmdj)
+[![ENV](https://img.shields.io/badge/webpack-^3.0.0-blue.svg)](https://github.com/Yangzhedi/sblmdj)
 
 ### Install & Start
 
@@ -15,7 +19,8 @@ open http://localhost:8000/
 
 ```sh
 npm run build  # then see dist dir
-# Note: you should remove `webpack-visualizer-plugin / webpack-bundle-analyzer` code in webpack.config.js file for production environment.
+# Note: you should remove `webpack-visualizer-plugin / webpack-bundle-analyzer` 
+code in webpack.config.js file for production environment.
 ```
 
 bundle analyzer tools: 
