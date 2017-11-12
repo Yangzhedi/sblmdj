@@ -8,6 +8,8 @@ import App from './components/App';
 import Stage1 from './components/Stage1';
 import Stage2 from './components/Stage2';
 import Stage3 from './components/Stage3';
+import PersonRegister from './components/register/person';
+import Register from './components/register/register';
 
 import './index.less';
 
@@ -70,7 +72,7 @@ class Index extends React.Component {
       <div className="body">
         <Carousel
           className="my-carousel"
-          autoplay={true}
+          autoplay={false}
           infinite
           selectedIndex={1}
           swipeSpeed={35}
@@ -98,21 +100,36 @@ class Index extends React.Component {
           <li><Link to="/s1">ListView + Carousel</Link></li>
           <li><Link to="/s2">Tabs + ...</Link></li>
           <li><Link to="/s3">Form + ...</Link></li>
+          <li><Link to="/register">Register</Link></li>
+          <li><Link to="/person">person</Link></li>
         </ul>
       </div>
     );
   }
 }
 
+
+
+const routeConfig = [
+    { path: '/',
+        component: App,
+        indexRoute: { component: Index },
+        childRoutes: [
+            { path: 's1', component: Stage1 },
+            { path: 's2', component: Stage2 },
+            { path: 's3', component: Stage3 },
+            { path: 'register', component: Register,
+                childRoutes: [
+                    { path: '/person', component: PersonRegister }
+                ]
+            }
+        ]
+    }
+];
+
+
 ReactDOM.render(
-  <Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Index} />
-      <Route path="s1" component={Stage1} />
-      <Route path="s2" component={Stage2} />
-      <Route path="s3" component={Stage3} />
-    </Route>
-  </Router>
+ <Router  history={hashHistory} routes={routeConfig} />
 , document.getElementById('example'));
 
 // ReactDOM.render(
@@ -126,3 +143,16 @@ ReactDOM.render(
 //     <App><Stage3 /></App>
 //   </div>
 // , document.getElementById('example'));
+
+
+{/*<Router history={hashHistory}>*/}
+{/*<Route path="/" component={App}>*/}
+{/*<IndexRoute component={Index} />*/}
+{/*<Route path="s1" component={Stage1} />*/}
+{/*<Route path="s2" component={Stage2} />*/}
+{/*<Route path="s3" component={Stage3} />*/}
+{/*<Route path="register" component={Register} />*/}
+{/*<Route path="person" component={PersonRegister} />*/}
+
+{/*</Route>*/}
+{/*</Router>*/}

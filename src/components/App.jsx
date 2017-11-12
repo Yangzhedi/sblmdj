@@ -18,6 +18,12 @@ const sidebarArr = [{
 },{
   content:"333",
   image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
+},{
+  content:"444",
+  image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
+},{
+  content:"555",
+  image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
 }];
 export default class App extends React.Component {
   constructor(props){
@@ -46,11 +52,17 @@ export default class App extends React.Component {
       {sidebarArr.map((i, index) => {
         if (index === 0) {
           return (<List.Item key={index} 
-            thumb={i.image}
+            // thumb={i.image}
             multipleLine
-          ><Link to="/s1" onClick={() => {
+          >
+            <Link to="/s1" onClick={() => {
               this.setState({ open: false })
-          }}>{i.content}</Link></List.Item>);
+            }}>
+              {/*登录注册，登录后头像*/}
+              <img src={i.image} style={{width:'8rem', height: '8rem'}}/>
+              <div style={{backgroundColor:'red'}}>{i.content}</div>
+            </Link>
+          </List.Item>);
         }
         return (<List.Item key={index}
           thumb={i.image}
