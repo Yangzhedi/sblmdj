@@ -9,6 +9,16 @@ import { NavBar, Drawer, Icon, List, Carousel } from 'antd-mobile';
 // import Drawer from 'antd-mobile/lib/drawer';
 // import 'antd-mobile/lib/drawer/style/css';
 
+const sidebarArr = [{
+  content:"111",
+  image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
+},{
+  content:"222",
+  image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
+},{
+  content:"333",
+  image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
+}];
 export default class App extends React.Component {
   constructor(props){
     super(props);
@@ -27,22 +37,26 @@ export default class App extends React.Component {
     console.log(args);
     console.log('1231231232');
     this.setState({ open: !this.state.open });
-  }
+  };
   render() {
     console.log(this.props.route, this.props.params, this.props.routeParams);
     const path = hashHistory.getCurrentLocation().pathname;
     console.log(path);
     const sidebar = (<List>
-      {[...Array(3).keys()].map((i, index) => {
+      {sidebarArr.map((i, index) => {
         if (index === 0) {
           return (<List.Item key={index} 
-            thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+            thumb={i.image}
             multipleLine
-          ><Link to="/s1">ListView + </Link></List.Item>);
+          ><Link to="/s1" onClick={() => {
+              this.setState({ open: false })
+          }}>{i.content}</Link></List.Item>);
         }
         return (<List.Item key={index}
-          thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-        ><Link to={"/s"+(index+1)}>Tabs + ...</Link></List.Item>);
+          thumb={i.image}
+        ><Link to={"/s"+(index+1)} onClick={() => {
+            this.setState({ open: false })
+        }}>{i.content}</Link></List.Item>);
       })}
     </List>);
 
