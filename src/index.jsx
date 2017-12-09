@@ -87,9 +87,7 @@ class Index extends React.Component {
                 onLoad={() => {
                   // fire window resize event to change height
                   window.dispatchEvent(new Event('resize'));
-                  this.setState({
-                    initialHeight: null,
-                  });
+                  this.setState({ initialHeight: null });
                 }}
               />
             </a>
@@ -107,8 +105,6 @@ class Index extends React.Component {
     );
   }
 }
-
-
 
 const routeConfig = [
     { path: '/',

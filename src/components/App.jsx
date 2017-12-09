@@ -58,9 +58,12 @@ export default class App extends React.Component {
             <Link to="/s1" onClick={() => {
               this.setState({ open: false })
             }}>
+              <div style={{textAlign: 'center'}}>
+                <img src={i.image} style={{width:'8rem', height: '8rem'}}/>
+                <div style={{backgroundColor:'red'}}>{i.content}</div>
+              </div>
               {/*登录注册，登录后头像*/}
-              <img src={i.image} style={{width:'8rem', height: '8rem'}}/>
-              <div style={{backgroundColor:'red'}}>{i.content}</div>
+
             </Link>
           </List.Item>);
         }
@@ -74,21 +77,17 @@ export default class App extends React.Component {
 
     const buttonStyle = { marginRight: '16px' };
     const homeButton = path =='/' ? null :<Icon key="0" type="search" style={buttonStyle} onClick={() => hashHistory.push('/')}/>;
-    const drawerDiv = { position: 'relative', height: '100%' };
+    const drawerDiv = { position: 'relative', height: 'calc(100% - 45px)' };
     const sidebarStyle = { backgroundColor: '#fff' };
     return (
       <div className="container">
         <NavBar mode="light"
           icon={path =='/' ? null : <Icon type="left" /> }
           onLeftClick={() => hashHistory.goBack()}
-          rightContent={[
-            homeButton,
-            <b onClick={() => this.setState({ open: true })}>...</b>
-          ]}
+          rightContent={[homeButton, <b onClick={() => this.setState({ open: !this.state.open })}>...</b>]}
         >
           {path =='/' ? 'CS:GO系列赛' : this.state.title}
         </NavBar>
-      
 
         <div style={drawerDiv}>
           <Drawer
