@@ -2,13 +2,6 @@ import React from 'react';
 import { Router, Route, hashHistory, IndexRoute, Link } from 'react-router';
 import { NavBar, Drawer, Icon, List, Carousel } from 'antd-mobile';
 
-// not use `babel-plugin-import`
-// import 'antd-mobile/dist/antd-mobile.css';
-// import NavBar from 'antd-mobile/lib/nav-bar';
-// import 'antd-mobile/lib/nav-bar/style/css';
-// import Drawer from 'antd-mobile/lib/drawer';
-// import 'antd-mobile/lib/drawer/style/css';
-
 const sidebarArr = [{
   content:"111",
   image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
@@ -25,6 +18,8 @@ const sidebarArr = [{
   content:"555",
   image:  "https://cdn1.bisaibang.com/StationAvatar1.1502691383861.png"
 }];
+
+
 export default class App extends React.Component {
   constructor(props){
     super(props);

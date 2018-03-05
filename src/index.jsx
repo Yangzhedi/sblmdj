@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute, Link } from 'react-router';
 import { Drawer, List, NavBar, Icon, Carousel } from 'antd-mobile';
-
-
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
+import reducers from './reducer'
 import App from './components/App';
 import Stage1 from './components/Stage1';
 import Stage2 from './components/Stage2';
@@ -12,6 +14,12 @@ import PersonRegister from './components/register/person';
 import Register from './components/register/register';
 
 import './index.less';
+
+// applyMiddleware 管理中间件
+const store = createStore(reducers, compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 
 class Index extends React.Component {
   state = {
@@ -32,39 +40,6 @@ class Index extends React.Component {
       });
     }, 100);
   }
-  // render() {
-  //   const contentStyle = { color: '#A6A6A6', textAlign: 'center', paddingTop: 42 };
-  //   const drawerStyle = { minHeight: document.documentElement.clientHeight };
-  //   const sidebar = (<List>
-  //     {[...Array(3).keys()].map((i, index) => {
-  //       if (index === 0) {
-  //         return (<List.Item key={index}
-  //           thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-  //           multipleLine
-  //         ><Link to="/s1">ListView + Carousel</Link></List.Item>);
-  //       }
-  //       return (<List.Item key={index}
-  //         thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-  //       ><Link to={"/s"+(index+1)}>Tabs + ...</Link></List.Item>);
-  //     })}
-  //   </List>);
-
-  //   return (<div  className="body">
-  //     <NavBar icon={<Icon type="ellipsis" />} onLeftClick={this.onOpenChange}>Basic</NavBar>
-  //     <Drawer
-  //       className="my-drawer"
-  //       style={drawerStyle}
-  //       enableDragHandle
-  //       contentStyle={contentStyle}
-  //       sidebar={sidebar}
-  //       open={this.state.open}
-  //       onOpenChange={this.onOpenChange}
-  //     >
-  //       Click upper-left corner
-  //     </Drawer>
-  //   </div>);
-  // }
-
   render() {
 
     const hProp = this.state.initialHeight ? { height: this.state.initialHeight } : {};
@@ -125,7 +100,9 @@ const routeConfig = [
 
 
 ReactDOM.render(
- <Router  history={hashHistory} routes={routeConfig} />
+    <Provider store={store}>
+        <Router history={hashHistory} routes={routeConfig} />
+    </Provider>
 , document.getElementById('example'));
 
 // ReactDOM.render(
